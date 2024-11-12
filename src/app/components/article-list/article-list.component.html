@@ -1,10 +1,13 @@
 <h2>Articles Populaires</h2>
+
 <div class="main-container">
-  for (article of articles;) {
-    @if (articles.isPublished) {
-  <app-article-thumbnail (article)="article" (notifyLike)="handleLike()"></app-article-thumbnail>
-    }
-  } @empty {
+  <ng-container *ngFor="let article of articles">
+    <ng-container *ngIf="article.isPublished">
+      <app-article-thumbnail
+        (article)="(articles)"
+        (notifyLike)="handleLike(article)"
+      ></app-article-thumbnail>
+    </ng-container>
+  </ng-container>
   <p>Aucun article publié pour le moment</p>
-  }
 </div>
