@@ -190,6 +190,10 @@ export class ArticleListComponent {
     },
   ];
 
+  get hasPublishedArticles(): boolean {
+    return this.articles.some(article => article.isPublished);
+  }
+
   handleLike(article: Article) {
     article.isLiked = !article.isLiked;
   }
