@@ -12,7 +12,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'article/id',
+    path: 'article/:id',
     component: ArticlePageComponent,
   },
   {
