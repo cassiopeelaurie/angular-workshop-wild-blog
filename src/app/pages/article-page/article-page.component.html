@@ -1,1 +1,7 @@
-<p>Article id {{ articleId }}</p>
+<div *ngIf="articles$ | async as article">
+  <p>Article id {{ articleId }}</p>  
+  <h1> {{ article.title}}</h1>  
+  <p>{{article.createdAt}}</p>
+  <h2>{{ article.content}}</h2>
+</div>
+
