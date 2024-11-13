@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { Article } from '../../models/article.model';
 import { CommonModule } from '@angular/common';
 import { ArticleThumbnailComponent } from '../article-thumbnail/article-thumbnail.component';
-import { map, Observable } from 'rxjs';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../../api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
@@ -13,26 +14,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './article-list.component.scss',
 })
 export class ArticleListComponent {
+
+  apiService : ApiService = inject(ApiService);
+
   articles$!: Observable<Article[]>;
-  http = inject(HttpClient);
 
   ngOnInit() {
-    this.articles$ = this.http
-      .get<{ articles: Article[] }>('assets/db.json')
-      .pipe(
-        map((response) =>
-          response.articles.filter((article) => article.isPublished)
-        )
-      );
-  }
-
-  get hasPublishedArticles(): Observable<boolean> {
-    return this.articles$.pipe(
-      map(
-        (articles: Article[]) =>
-          articles && articles.some((article: Article) => article.isPublished)
-      )
-    );
+    this.articles$ = this.apiService.getArticles();
   }
 
   handleLike(article: Article) {

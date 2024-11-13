@@ -4,6 +4,7 @@ import { Article } from '../../models/article.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../api.service';
 
 
 @Component({
@@ -19,8 +20,9 @@ private route: ActivatedRoute = inject(ActivatedRoute);
 
 articleId!: number;
 
+apiService : ApiService = inject(ApiService);
+
 articles$!: Observable<Article>;
-http = inject(HttpClient);
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -32,5 +34,5 @@ http = inject(HttpClient);
   }
 
   getArticleById(id: number) {
-    this.articles$ = this.http.get<Article>(`http://localhost:3000/articles/${id}`);
+    this.articles$ = this.apiService.getArticleById(id);
 }}
