@@ -4,24 +4,29 @@ import { ArticlePageComponent } from './pages/article-page/article-page.componen
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { PokemonPageComponent } from './pages/pokemon-page/pokemon-page.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'article/:id',
-    component: ArticlePageComponent,
+    component: ArticlePageComponent
   },
   {
     path: 'contact',
-    component: ContactPageComponent,
+    component: ContactPageComponent
   },
   {
     path: 'signup',
     component: SignupPageComponent
+  },
+  {
+    path: 'pokemons',
+    component: PokemonPageComponent
   },
   {
     path: '**',

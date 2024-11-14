@@ -1,0 +1,10 @@
+<div class="card-lists" *ngIf="cards$ | async as cards">
+    <div *ngFor="let card of cards.data; trackBy: trackByIndex">
+        <img [src]="card.images.small" alt="{{ card.name }}">
+      </div>
+    </div>
+  
+  <div *ngIf="!(cards$ | async)">
+    Chargement des cartes...
+  </div>
+  
